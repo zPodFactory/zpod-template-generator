@@ -1,0 +1,72 @@
+## zPod Summary: {{ zpod_name }}
+##
+## Description: {{ zpod_description }}
+## Domain:      {{ zpod_domain }}
+## Profile:     {{ zpod_profile }}
+## Status:      {{ zpod_status }}
+## Password:    {{ zpod_password }}
+
+## --- Network / Infrastructure ---
+## Subnet:    {{ zpod_subnet | default("N/A") }}
+## Gateway:   {{ zpod_gateway | default("N/A") }}
+## Netmask:   {{ zpod_netmask | default("N/A") }}
+## Netprefix: /{{ zpod_netprefix | default("N/A") }}
+## Portgroup: {{ zpod_portgroup | default("N/A") }}
+## DNS:       {{ zpod_dns | default("N/A") }}
+## NFS:       {{ zpod_nfs | default("N/A") }}
+## NTP:       {{ zpod_ntp | default("N/A") }}
+## SSH Key:   {{ zpod_sshkey | default("N/A") }}
+
+## --- Networks ---
+{%- for net in zpod_networks %}
+## Network {{ loop.index }}: {{ net.cidr }}
+{%- endfor %}
+
+## --- Components ---
+{%- for comp in zpod_components %}
+## {{ comp.component.component_name }} ({{ comp.component.component_version }})
+##   Hostname: {{ comp.hostname | default("N/A") }}
+##   FQDN:     {{ comp.fqdn | default("N/A") }}
+##   IP:       {{ comp.ip | default("N/A") }}
+{%- endfor %}
+
+## --- DNS Entries for domain {{zpod_domain}} ---
+{%- for entry in zpod_dns_records %}
+## {{ entry.hostname }} -> {{ entry.ip }}
+{%- endfor %}
+
+## --- Endpoint ---
+{%- if zpod_endpoint %}
+## Name:   {{ zpod_endpoint.name }}
+## Status: {{ zpod_endpoint.status }}
+{%- endif %}
+
+## --- Features ---
+{%- if zpod_features %}
+{%- for key, value in zpod_features.items() %}
+## {{ key }}: {{ value }}
+{%- endfor %}
+{%- endif %}
+
+## --- Accessing Individual Components ---
+## Example: accessing vCSA component directly (if deployed):
+{%- if zpod_component_vcsa is defined %}
+## vCSA IP:       {{ zpod_component_vcsa.ip }}
+## vCSA FQDN:     {{ zpod_component_vcsa.fqdn }}
+## vCSA Password:  {{ zpod_component_vcsa.password }}
+{%- endif %}
+
+## --- Settings ---
+## Iterate all settings:
+{%- for setting in zpod_settings %}
+## {{ setting.name }}: {{ setting.value }}
+{%- endfor %}
+## Or access individual settings directly by name:
+##   Default domain: {{ zpod_setting_zpodfactory_default_domain | default("N/A") }}
+
+## --- Extra Variables ---
+## Extra variables from --extra-vars are available by their key names.
+## For example, if your JSON contains {"username": "admin", "cluster_size": 3}:
+##   username:     {{ username | default("not provided") }}
+##   password      {{ password | default("not provided") }}
+##   version:      {{ version | default("not provided") }}

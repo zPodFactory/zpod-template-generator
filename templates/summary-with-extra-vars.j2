@@ -1,0 +1,16 @@
+## zPod Informations
+
+zPod: {{ zpod_name }}
+Domain: {{ zpod_domain }}
+Status: {{ zpod_status }}
+Profile: {{ zpod_profile }}
+Password: {{ zpod_password }}
+# You can index directly a object to fetch it's value (zpod_networks[0].cidr)
+Management Network: {{zpod_networks[0].cidr}}
+
+## --- Extra Variables ---
+## Extra variables from --extra-vars are available by their key names.
+
+EXTRA VARS Username: {{ username }}
+EXTRA VARS Password: {{ password }}
+EXTRA VARS Version:  {{ version }}

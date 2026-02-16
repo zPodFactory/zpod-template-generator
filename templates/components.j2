@@ -1,0 +1,4 @@
+# Components for zPod: {{ zpod_name }}
+{%- for comp in zpod_components %}
+- {{ comp.component.component_name }} {{ comp.component.component_version }} | {{ comp.ip | default("N/A") }} | {{ comp.fqdn | default("N/A") }}
+{%- endfor %}

@@ -1,0 +1,5 @@
+# {{ zpod_domain }} zbox DNS records entries for zPod.
+
+{%- for entry in zpod_dns_records %}
+{{ entry.ip }}    {{ entry.hostname }}    
+{%- endfor %}
