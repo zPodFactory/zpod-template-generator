@@ -13,10 +13,10 @@ This script has been vibe code with Claude Code for fun.
 
 ### 1. Configure API access
 
-Copy the sample env file and fill in your values:
+Copy the example env file and fill in your values:
 
 ```bash
-cp .env.sample .env
+cp env_example.txt .env
 ```
 
 ```env
