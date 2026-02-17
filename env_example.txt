@@ -1,0 +1,2 @@
+ZPODFACTORY_HOST=http://zpodfactory.fqdn.com:8000
+ZPODFACTORY_TOKEN=your_api_token_here
